@@ -12,7 +12,10 @@ const AuthStack = () => (
       component={SignInScreen}
       options={{ headerShown: false, statusBarBackgroundColor: "#F8F9FA" }}
     />
-    <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+    <Stack.Screen
+      name="SignUpScreen"
+      component={SignUpScreen}
+      options={{ headerShown: false, statusBarBackgroundColor: "#F8F9FA" }} />
   </Stack.Navigator>
 );
 
