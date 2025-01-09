@@ -16,7 +16,7 @@ type SignInScreenProp = NativeStackScreenProps<
 >;
 
 const SignInScreen = ({ navigation }: SignInScreenProp) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   return (
     <View
       style={{
@@ -36,8 +36,8 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       <CustomTextInput
         placeholder="Password"
         isPassword={true}
-        isPasswordVisible={isPasswordVisible}
-        setIsPasswordVisible={setIsPasswordVisible}
+        isPasswordHidden={isPasswordHidden}
+        setIsPasswordHidden={setIsPasswordHidden}
       />
       <CustomButton label="Sign In" />
 
@@ -46,7 +46,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       <SignInWithGoogleButton />
 
       <Text
-        style={{ fontSize: wp(4.5), color: "#98D0EB", paddingVertical: hp(2) }}
+        style={{ fontSize: wp(4), color: "#98D0EB", paddingVertical: hp(2) }}
         onPress={() => navigation.navigate("SignUpScreen")}
       >
         Do not have an account? Sign Up.
