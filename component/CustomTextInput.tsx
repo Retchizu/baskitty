@@ -34,7 +34,7 @@ const CustomTextInput = ({
     >
       <TextInput
         placeholder={placeholder}
-        style={{ flex: 1, fontSize: wp(5) }}
+        style={{ flex: 1, fontSize: wp(5), fontFamily: "fgregular" }}
         secureTextEntry={isPasswordHidden}
         numberOfLines={1}
       />
@@ -43,21 +43,12 @@ const CustomTextInput = ({
           activeOpacity={0.5}
           onPress={() => setIsPasswordHidden!(!isPasswordHidden)}
         >
-          {isPasswordHidden ? (
-            <Feather
-              name="eye-off"
-              size={wp(6)}
-              color="black"
-              style={styleSheet.eyeIconStyle}
-            />
-          ) : (
-            <Feather
-              name="eye"
-              size={wp(6)}
-              color="black"
-              style={styleSheet.eyeIconStyle}
-            />
-          )}
+          <Feather
+            name={isPasswordHidden ? "eye-off" : "eye"}
+            size={wp(6)}
+            color="black"
+            style={{ paddingHorizontal: wp(2) }}
+          />
         </TouchableOpacity>
       )}
     </View>
@@ -65,9 +56,3 @@ const CustomTextInput = ({
 };
 
 export default CustomTextInput;
-
-const styleSheet = StyleSheet.create({
-  eyeIconStyle: {
-    paddingHorizontal: wp(2),
-  },
-});

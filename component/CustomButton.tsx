@@ -1,5 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { Text, TouchableOpacity } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -20,7 +19,14 @@ const CustomButton = ({ label }: CustomButtonProps) => {
       }}
       activeOpacity={0.8}
     >
-      <Text style={{ textAlign: "center", color: "#F8F9FA", fontSize: wp(4) }}>
+      <Text
+        style={{
+          textAlign: "center",
+          color: "#F8F9FA",
+          fontSize: wp(4.5),
+          fontFamily: "fgsemibold",
+        }}
+      >
         {label}
       </Text>
     </TouchableOpacity>

@@ -30,7 +30,15 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
         source={require("../assets/baskitty_logo.png")}
         style={{ alignSelf: "center", height: hp(25), width: wp(35) }}
       />
-      <Text style={{ textAlign: "center", fontSize: wp(6) }}>Sign In</Text>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: wp(6),
+          fontFamily: "fgsemibold",
+        }}
+      >
+        Sign In
+      </Text>
 
       <CustomTextInput placeholder="Username/email" />
       <CustomTextInput
@@ -41,12 +49,26 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       />
       <CustomButton label="Sign In" />
 
-      <Text style={{ textAlign: "center", paddingVertical: hp(3) }}>or</Text>
+      <Text
+        style={{
+          textAlign: "center",
+          paddingVertical: hp(3),
+          fontFamily: "fgregular",
+          fontSize: wp(4),
+        }}
+      >
+        or
+      </Text>
 
       <SignInWithGoogleButton />
 
       <Text
-        style={{ fontSize: wp(4), color: "#98D0EB", paddingVertical: hp(2) }}
+        style={{
+          fontSize: wp(4),
+          color: "#98D0EB",
+          paddingVertical: hp(2),
+          fontFamily: "fgregular",
+        }}
         onPress={() => navigation.navigate("SignUpScreen")}
       >
         Do not have an account? Sign Up.

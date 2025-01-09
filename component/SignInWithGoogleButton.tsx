@@ -17,7 +17,14 @@ const SignInWithGoogleButton = () => {
       }}
       activeOpacity={0.8}
     >
-      <Text style={{ textAlign: "center", color: "black", fontSize: wp(4) }}>
+      <Text
+        style={{
+          textAlign: "center",
+          color: "black",
+          fontSize: wp(4),
+          fontFamily: "fgregular",
+        }}
+      >
         Sign In With Google
       </Text>
     </TouchableOpacity>
