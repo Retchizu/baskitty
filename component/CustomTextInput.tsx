@@ -9,15 +9,15 @@ import Feather from "@expo/vector-icons/Feather";
 type CustomTextInputProps = {
   placeholder: string;
   isPassword?: boolean;
-  isPasswordVisible?: boolean;
-  setIsPasswordVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+  isPasswordHidden?: boolean;
+  setIsPasswordHidden?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CustomTextInput = ({
   placeholder,
   isPassword,
-  isPasswordVisible,
-  setIsPasswordVisible,
+  isPasswordHidden,
+  setIsPasswordHidden,
 }: CustomTextInputProps) => {
   return (
     <View
@@ -34,28 +34,27 @@ const CustomTextInput = ({
       <TextInput
         placeholder={placeholder}
         style={{ flex: 1 }}
-        secureTextEntry={isPasswordVisible}
+        secureTextEntry={isPasswordHidden}
       />
       {isPassword && (
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={() => setIsPasswordVisible!(!isPasswordVisible)}
+          onPress={() => setIsPasswordHidden!(!isPasswordHidden)}
         >
-          {isPasswordVisible ? (
-            <Feather
-              name="eye"
-              size={24}
-              color="black"
-              style={{ paddingHorizontal: wp(2) }}
-            />
-          ) : (
+          {isPasswordHidden ? (
+
             <Feather
               name="eye-off"
-              size={24}
+              size={wp(4.5)}
               color="black"
-              style={{ paddingHorizontal: wp(2) }}
+              style={{ paddingHorizontal: wp(1) }}
             />
-          )}
+          ) : <Feather
+            name="eye"
+            size={wp(4.5)}
+            color="black"
+            style={{ paddingHorizontal: wp(1) }}
+          />}
         </TouchableOpacity>
       )}
     </View>
