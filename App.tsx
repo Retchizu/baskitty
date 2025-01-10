@@ -10,11 +10,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName="AuthStack"
+        screenOptions={{
+          headerShown: false
+        }}
+        initialRouteName="MainBottomTab"
       >
-        <Stack.Screen name="AuthStack" component={AuthStack} />
-        <Stack.Screen name="MainBottomTab" component={MainBottomTab} />
+        <Stack.Screen name="AuthStack" component={AuthStack} options={{ statusBarBackgroundColor: "#F8F9FA" }} />
+        <Stack.Screen name="MainBottomTab" component={MainBottomTab} options={{ statusBarBackgroundColor: "#FFC1CC" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
