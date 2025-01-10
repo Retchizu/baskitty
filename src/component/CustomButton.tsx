@@ -1,14 +1,15 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-type CustomButtonProps = {
+type CustomButtonProps = TouchableOpacityProps & {
   label: string;
 };
 
-const CustomButton = ({ label }: CustomButtonProps) => {
+const CustomButton: React.FC<CustomButtonProps> = (props) => {
+  const { label, ...touchablyOpacityProps } = props;
   return (
     <TouchableOpacity
       style={{
@@ -18,6 +19,7 @@ const CustomButton = ({ label }: CustomButtonProps) => {
         marginVertical: hp(1),
       }}
       activeOpacity={0.8}
+      {...touchablyOpacityProps}
     >
       <Text
         style={{

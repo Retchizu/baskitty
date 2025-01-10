@@ -1,24 +1,31 @@
-import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
-import React from "react";
+import {
+  TextInput,
+  TouchableOpacity,
+  View,
+  TextInputProps,
+} from "react-native";
+import React, { Dispatch, SetStateAction, FC } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import Feather from "@expo/vector-icons/Feather";
 
-type CustomTextInputProps = {
+type CustomTextInputProps = TextInputProps & {
   placeholder: string;
   isPassword?: boolean;
   isPasswordHidden?: boolean;
-  setIsPasswordHidden?: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsPasswordHidden?: Dispatch<SetStateAction<boolean>>;
 };
 
-const CustomTextInput = ({
-  placeholder,
-  isPassword,
-  isPasswordHidden,
-  setIsPasswordHidden,
-}: CustomTextInputProps) => {
+const CustomTextInput: FC<CustomTextInputProps> = (props) => {
+  const {
+    placeholder,
+    isPassword,
+    isPasswordHidden,
+    setIsPasswordHidden,
+    ...textInputProps
+  } = props;
   return (
     <View
       style={{
@@ -37,6 +44,7 @@ const CustomTextInput = ({
         style={{ flex: 1, fontSize: wp(5), fontFamily: "fgregular" }}
         secureTextEntry={isPasswordHidden}
         numberOfLines={1}
+        {...textInputProps}
       />
       {isPassword && (
         <TouchableOpacity

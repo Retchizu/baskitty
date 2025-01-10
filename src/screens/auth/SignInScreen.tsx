@@ -4,19 +4,33 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../../type/types";
 import CustomTextInput from "../../component/CustomTextInput";
 import CustomButton from "../../component/CustomButton";
 import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AuthStackParamList } from "../../type/types";
+import { signInUser } from "../../methods/auth-methods/signInUser";
+import { supabase } from "../../initSupabase";
+import { handleTextChange } from "../../methods/handleTextChange";
 
-type SignUpScreenProp = NativeStackScreenProps<
+type SignInScreenProp = NativeStackScreenProps<
   AuthStackParamList,
-  "SignUpScreen"
+  "SignInScreen"
 >;
 
-const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
+const SignInScreen = ({ navigation }: SignInScreenProp) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
+  const [userCredential, setUserCredential] = useState({
+    email: "",
+    password: "",
+  });
+
+  const getUser = async () => {
+    console.log(await supabase.auth.getUser());
+  };
+
+  getUser();
   return (
     <View
       style={{
@@ -27,7 +41,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
       }}
     >
       <Image
-        source={require("../../assets/baskitty_logo.png")}
+        source={require("../../../assets/baskitty_logo.png")}
         style={{ alignSelf: "center", height: hp(25), width: wp(35) }}
       />
       <Text
@@ -37,17 +51,32 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           fontFamily: "fgsemibold",
         }}
       >
-        Sign Up
+        Sign In
       </Text>
-      <CustomTextInput placeholder="Username" />
-      <CustomTextInput placeholder="Email" />
+
+      <CustomTextInput
+        placeholder="Username/email"
+        value={userCredential.email}
+        onChangeText={(text) =>
+          handleTextChange(setUserCredential, "email", text)
+        }
+      />
       <CustomTextInput
         placeholder="Password"
         isPassword={true}
         isPasswordHidden={isPasswordHidden}
         setIsPasswordHidden={setIsPasswordHidden}
+        value={userCredential.password}
+        onChangeText={(text) =>
+          handleTextChange(setUserCredential, "password", text)
+        }
       />
-      <CustomButton label="Sign Up" />
+      <CustomButton
+        label="Sign In"
+        onPress={() =>
+          signInUser(userCredential.email, userCredential.password)
+        }
+      />
 
       <Text
         style={{
@@ -69,25 +98,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           paddingVertical: hp(2),
           fontFamily: "fgregular",
         }}
-        onPress={() => navigation.navigate("SignInScreen")}
+        onPress={() => navigation.replace("SignUpScreen")}
       >
-        Already have an account? Sign In.
-      </Text>
-
-      <Text
-        style={{
-          fontSize: wp(4),
-          color: "black",
-          paddingVertical: hp(2),
-          fontFamily: "fgregular",
-        }}
-        onPress={() => navigation.navigate("SignInScreen")}
-      >
-        By creating an account, you’re agreeing to our awesome Terms of Service
-        and Privacy Policy.
+        Do not have an account? Sign Up.
       </Text>
     </View>
   );
 };
 
-export default SignUpScreen;
+export default SignInScreen;

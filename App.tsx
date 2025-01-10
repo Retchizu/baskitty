@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
-import AuthStack from "./navigation-container/AuthStack";
+import AuthStack from "./src/navigation-container/AuthStack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { MainStackParamList } from "./type/types";
-import MainBottomTab from "./navigation-container/MainBottomTab";
+import { MainStackParamList } from "./src/type/types";
+import MainBottomTab from "./src/navigation-container/MainBottomTab";
 
 export default function App() {
   const Stack = createNativeStackNavigator<MainStackParamList>();
@@ -11,12 +11,19 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false
+          headerShown: false,
         }}
-        initialRouteName="MainBottomTab"
       >
-        <Stack.Screen name="AuthStack" component={AuthStack} options={{ statusBarBackgroundColor: "#F8F9FA" }} />
-        <Stack.Screen name="MainBottomTab" component={MainBottomTab} options={{ statusBarBackgroundColor: "#FFC1CC" }} />
+        <Stack.Screen
+          name="AuthStack"
+          component={AuthStack}
+          options={{ statusBarBackgroundColor: "#F8F9FA" }}
+        />
+        <Stack.Screen
+          name="MainBottomTab"
+          component={MainBottomTab}
+          options={{ statusBarBackgroundColor: "#FFC1CC" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
