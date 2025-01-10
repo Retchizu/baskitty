@@ -5,16 +5,19 @@ import CategoryScreen from "../screens/main/CategoryScreen";
 import NotificationScreen from "../screens/main/NotificationScreen";
 import CartScreen from "../screens/main/CartScreen";
 import ProfileScreen from "../screens/main/ProfileScreen";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 const Tab = createBottomTabNavigator<MainBottomTabParamList>();
 
 const MainBottomTab = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="HomeScreen" component={HomeScreen} />
-    <Tab.Screen name="CategoryScreen" component={CategoryScreen} />
-    <Tab.Screen name="NotificationScreen" component={NotificationScreen} />
-    <Tab.Screen name="CartScreen" component={CartScreen} />
-    <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+  <Tab.Navigator screenOptions={{
+    headerShown: false,
+  }}>
+    <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarIcon: () => (<AntDesign name="home" size={24} color="black" />), tabBarLabel: "Shop" }} />
+    <Tab.Screen name="CategoryScreen" component={CategoryScreen} options={{ tabBarIcon: () => (<AntDesign name="appstore-o" size={24} color="black" />), tabBarLabel: "Category" }} />
+    <Tab.Screen name="NotificationScreen" component={NotificationScreen} options={{ tabBarIcon: () => (<AntDesign name="bells" size={24} color="black" />), tabBarLabel: "Notification" }} />
+    <Tab.Screen name="CartScreen" component={CartScreen} options={{ tabBarIcon: () => (<AntDesign name="shoppingcart" size={24} color="black" />), tabBarLabel: "Cart" }} />
+    <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{ tabBarIcon: () => (<AntDesign name="user" size={24} color="black" />), tabBarLabel: "Me" }} />
   </Tab.Navigator>
 );
 
