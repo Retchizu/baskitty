@@ -4,18 +4,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import CustomTextInput from "../../component/CustomTextInput";
+import CustomButton from "../../component/CustomButton";
+import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../type/types";
-import CustomTextInput from "../component/CustomTextInput";
-import CustomButton from "../component/CustomButton";
-import SignInWithGoogleButton from "../component/SignInWithGoogleButton";
+import { AuthStackParamList } from "../../type/types";
 
-type SignUpScreenProp = NativeStackScreenProps<
+type SignInScreenProp = NativeStackScreenProps<
   AuthStackParamList,
-  "SignUpScreen"
+  "SignInScreen"
 >;
 
-const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
+const SignInScreen = ({ navigation }: SignInScreenProp) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   return (
     <View
@@ -27,7 +27,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
       }}
     >
       <Image
-        source={require("../assets/baskitty_logo.png")}
+        source={require("../../assets/baskitty_logo.png")}
         style={{ alignSelf: "center", height: hp(25), width: wp(35) }}
       />
       <Text
@@ -37,17 +37,17 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           fontFamily: "fgsemibold",
         }}
       >
-        Sign Up
+        Sign In
       </Text>
-      <CustomTextInput placeholder="Username" />
-      <CustomTextInput placeholder="Email" />
+
+      <CustomTextInput placeholder="Username/email" />
       <CustomTextInput
         placeholder="Password"
         isPassword={true}
         isPasswordHidden={isPasswordHidden}
         setIsPasswordHidden={setIsPasswordHidden}
       />
-      <CustomButton label="Sign Up" />
+      <CustomButton label="Sign In" />
 
       <Text
         style={{
@@ -69,25 +69,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           paddingVertical: hp(2),
           fontFamily: "fgregular",
         }}
-        onPress={() => navigation.navigate("SignInScreen")}
+        onPress={() => navigation.navigate("SignUpScreen")}
       >
-        Already have an account? Sign In.
-      </Text>
-
-      <Text
-        style={{
-          fontSize: wp(4),
-          color: "black",
-          paddingVertical: hp(2),
-          fontFamily: "fgregular",
-        }}
-        onPress={() => navigation.navigate("SignInScreen")}
-      >
-        By creating an account, you’re agreeing to our awesome Terms of Service
-        and Privacy Policy.
+        Do not have an account? Sign Up.
       </Text>
     </View>
   );
 };
 
-export default SignUpScreen;
+export default SignInScreen;

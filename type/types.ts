@@ -3,3 +3,11 @@ export type AuthStackParamList = {
   SignInScreen: undefined;
   SignUpScreen: undefined;
 };
+
+export type MainStackParamList = {
+  HomeScreen: undefined;
+  CategoryScreen: undefined;
+  NotificationScreen: undefined;
+  CartScreen: undefined;
+  ProfileScreen: undefined;
+}

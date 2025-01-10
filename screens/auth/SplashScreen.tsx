@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { AuthStackParamList } from "../type/types";
+import { AuthStackParamList } from "../../type/types";
 
 type SplashScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -14,14 +14,14 @@ type SplashScreenProps = NativeStackScreenProps<
 >;
 const SplashScreen = ({ navigation }: SplashScreenProps) => {
   const [loaded] = useFonts({
-    fgbold: require("../assets/fonts/FamiljenGrotesk-Bold.ttf"),
-    fgbolditalic: require("../assets/fonts/FamiljenGrotesk-BoldItalic.ttf"),
-    fgitalic: require("../assets/fonts/FamiljenGrotesk-Italic.ttf"),
-    fgmedium: require("../assets/fonts/FamiljenGrotesk-Medium.ttf"),
-    fgmediumitalic: require("../assets/fonts/FamiljenGrotesk-MediumItalic.ttf"),
-    fgregular: require("../assets/fonts/FamiljenGrotesk-Regular.ttf"),
-    fgsemibold: require("../assets/fonts/FamiljenGrotesk-SemiBold.ttf"),
-    fgsemibolditalic: require("../assets/fonts/FamiljenGrotesk-SemiBoldItalic.ttf"),
+    fgbold: require("../../assets/fonts/FamiljenGrotesk-Bold.ttf"),
+    fgbolditalic: require("../../assets/fonts/FamiljenGrotesk-BoldItalic.ttf"),
+    fgitalic: require("../../assets/fonts/FamiljenGrotesk-Italic.ttf"),
+    fgmedium: require("../../assets/fonts/FamiljenGrotesk-Medium.ttf"),
+    fgmediumitalic: require("../../assets/fonts/FamiljenGrotesk-MediumItalic.ttf"),
+    fgregular: require("../../assets/fonts/FamiljenGrotesk-Regular.ttf"),
+    fgsemibold: require("../../assets/fonts/FamiljenGrotesk-SemiBold.ttf"),
+    fgsemibolditalic: require("../../assets/fonts/FamiljenGrotesk-SemiBoldItalic.ttf"),
   });
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
       style={{ backgroundColor: "F8F9FA", flex: 1, justifyContent: "center" }}
     >
       <Image
-        source={require("../assets/baskitty_logo.png")}
+        source={require("../../assets/baskitty_logo.png")}
         style={{ alignSelf: "center", height: hp(30), width: wp(40) }}
       />
     </View>
