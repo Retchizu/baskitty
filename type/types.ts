@@ -4,10 +4,15 @@ export type AuthStackParamList = {
   SignUpScreen: undefined;
 };
 
-export type MainStackParamList = {
+export type MainBottomTabParamList = {
   HomeScreen: undefined;
   CategoryScreen: undefined;
   NotificationScreen: undefined;
   CartScreen: undefined;
   ProfileScreen: undefined;
-}
+};
+
+export type MainStackParamList = {
+  AuthStack: undefined;
+  MainBottomTab: undefined;
+};

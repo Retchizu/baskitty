@@ -25,7 +25,7 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
   });
 
   useEffect(() => {
-    if (loaded) navigation.navigate("SignInScreen");
+    if (loaded) navigation.replace("SignInScreen");
   }, [loaded]);
   return (
     <View

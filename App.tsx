@@ -1,21 +1,21 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import AuthStack from "./navigation-container/AuthStack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { MainStackParamList } from "./type/types";
+import MainBottomTab from "./navigation-container/MainBottomTab";
 
 export default function App() {
+  const Stack = createNativeStackNavigator<MainStackParamList>();
+
   return (
     <NavigationContainer>
-      <AuthStack />
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="AuthStack"
+      >
+        <Stack.Screen name="AuthStack" component={AuthStack} />
+        <Stack.Screen name="MainBottomTab" component={MainBottomTab} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
