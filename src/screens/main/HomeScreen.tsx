@@ -25,7 +25,6 @@ const HomeScreen = () => {
         <CustomSearchInput />
       </View>
       <CustomSlider />
-      
     </View>
   );
 };

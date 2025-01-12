@@ -1,5 +1,14 @@
-import { View, Text, TouchableOpacity, ImageBackground, TouchableOpacityProps } from 'react-native'
-import React from 'react'
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  TouchableOpacityProps,
+  ImageSourcePropType,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
+import React from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -7,20 +16,22 @@ import {
 
 type CategoryButtonProps = TouchableOpacityProps & {
   label: string;
-  image: any;
-}
+  image: ImageSourcePropType;
+};
 
 const CategoryButton: React.FC<CategoryButtonProps> = (props) => {
   const { label, image } = props;
   return (
-    <TouchableOpacity style={{
-      marginVertical: hp(0.8),
-      borderRadius: wp(2),
-      overflow: "hidden",
-      borderWidth: 2,
-      borderColor: "#FFC1CC"
-    }}>
-      <ImageBackground source={image} resizeMode='cover'>
+    <TouchableOpacity
+      style={{
+        marginVertical: hp(0.8),
+        borderRadius: wp(2),
+        overflow: "hidden",
+        borderWidth: 2,
+        borderColor: "#FFC1CC",
+      }}
+    >
+      <ImageBackground source={image} resizeMode="cover">
         <Text
           style={{
             textAlign: "center",
@@ -34,7 +45,7 @@ const CategoryButton: React.FC<CategoryButtonProps> = (props) => {
         </Text>
       </ImageBackground>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default CategoryButton
+export default CategoryButton;

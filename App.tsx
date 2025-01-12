@@ -12,13 +12,13 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-        }} initialRouteName="MainBottomTab"
+        }}
       >
-        {/*<Stack.Screen
+        <Stack.Screen
           name="AuthStack"
           component={AuthStack}
           options={{ statusBarBackgroundColor: "#F8F9FA" }}
-        />*/}
+        />
         <Stack.Screen
           name="MainBottomTab"
           component={MainBottomTab}

@@ -1,5 +1,5 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Image, StyleSheet, ImageSourcePropType } from "react-native";
+import React from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -8,7 +8,7 @@ import {
 type SlideItemProps = {
   item: {
     id: number;
-    image: any;
+    image: ImageSourcePropType;
   };
 };
 
@@ -17,10 +17,10 @@ const SlideItem: React.FC<SlideItemProps> = ({ item }) => {
     <View style={styles.container}>
       <Image source={item.image} resizeMode="contain" style={styles.image} />
     </View>
-  )
-}
+  );
+};
 
-export default SlideItem
+export default SlideItem;
 
 const styles = StyleSheet.create({
   container: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: "cover",
-    height: hp(23), 
-    width:  wp(100), 
+    height: hp(23),
+    width: wp(100),
   },
 });

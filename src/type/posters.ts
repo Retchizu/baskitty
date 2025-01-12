@@ -1,6 +1,8 @@
-type Poster = {
+import { ImageSourcePropType } from "react-native";
+
+export type Poster = {
   id: number;
-  image: any;
+  image: ImageSourcePropType;
 };
 
 const posters: Poster[] = [
