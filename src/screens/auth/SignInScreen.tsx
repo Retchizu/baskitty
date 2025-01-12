@@ -20,17 +20,12 @@ type SignInScreenProp = NativeStackScreenProps<
 
 const SignInScreen = ({ navigation }: SignInScreenProp) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-
+  const [signInLoading, setSignInLoading] = useState(false);
   const [userCredential, setUserCredential] = useState({
     email: "",
     password: "",
   });
 
-  const getUser = async () => {
-    console.log(await supabase.auth.getUser());
-  };
-
-  getUser();
   return (
     <View
       style={{
@@ -74,8 +69,14 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       <CustomButton
         label="Sign In"
         onPress={() =>
-          signInUser(userCredential.email, userCredential.password)
+          signInUser(
+            userCredential.email,
+            userCredential.password,
+            navigation,
+            setSignInLoading
+          )
         }
+        loading={signInLoading}
       />
 
       <Text

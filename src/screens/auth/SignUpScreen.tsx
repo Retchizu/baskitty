@@ -1,5 +1,5 @@
-import { Image, Text, View } from "react-native";
-import { useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,6 +11,8 @@ import CustomButton from "../../component/CustomButton";
 import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
 import { signUpUser } from "../../methods/auth-methods/signUpUser";
 import { handleTextChange } from "../../methods/handleTextChange";
+import { Formik } from "formik";
+import { SignUpSchema } from "../../methods/form-validation-methods/signUpFields";
 
 type SignUpScreenProp = NativeStackScreenProps<
   AuthStackParamList,
@@ -19,105 +21,131 @@ type SignUpScreenProp = NativeStackScreenProps<
 
 const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [signUpLoading, setSignUpLoading] = useState(false);
 
-  const [userCredential, setUserCredential] = useState({
+  /*  const [userCredential, setUserCredential] = useState({
     userName: "",
     email: "",
     password: "",
   });
-
-  console.log(userCredential);
+ */
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        paddingHorizontal: wp(10),
-        backgroundColor: "#F8F9FA",
+    <Formik
+      initialValues={{ userName: "", email: "", password: "" }}
+      validationSchema={SignUpSchema}
+      onSubmit={(values) => {
+        console.log(values);
       }}
     >
-      <Image
-        source={require("../../../assets/baskitty_logo.png")}
-        style={{ alignSelf: "center", height: hp(25), width: wp(35) }}
-      />
-      <Text
-        style={{
-          textAlign: "center",
-          fontSize: wp(6),
-          fontFamily: "fgsemibold",
-        }}
-      >
-        Sign Up
-      </Text>
-      <CustomTextInput
-        placeholder="Username"
-        value={userCredential.userName}
-        onChangeText={(text) =>
-          handleTextChange(setUserCredential, "userName", text)
-        }
-      />
-      <CustomTextInput
-        placeholder="Email"
-        value={userCredential.email}
-        onChangeText={(text) =>
-          handleTextChange(setUserCredential, "email", text)
-        }
-      />
-      <CustomTextInput
-        placeholder="Password"
-        isPassword={true}
-        isPasswordHidden={isPasswordHidden}
-        setIsPasswordHidden={setIsPasswordHidden}
-        value={userCredential.password}
-        onChangeText={(text) =>
-          handleTextChange(setUserCredential, "password", text)
-        }
-      />
-      <CustomButton
-        label="Sign Up"
-        onPress={() =>
-          signUpUser(userCredential.email, userCredential.password)
-        }
-      />
+      {({ values, handleChange, handleBlur, errors, touched }) => (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            paddingHorizontal: wp(10),
+            backgroundColor: "#F8F9FA",
+          }}
+        >
+          <Image
+            source={require("../../../assets/baskitty_logo.png")}
+            style={{ alignSelf: "center", height: hp(25), width: wp(35) }}
+          />
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: wp(6),
+              fontFamily: "fgsemibold",
+            }}
+          >
+            Sign Up
+          </Text>
+          <CustomTextInput
+            placeholder="Username"
+            value={values.userName}
+            onChangeText={handleChange("userName")}
+            onBlur={handleBlur("userName")}
+          />
+          {touched.userName && errors.userName && (
+            <Text style={styleSheet.errorMessage}>{errors.userName}</Text>
+          )}
+          <CustomTextInput
+            placeholder="Email"
+            value={values.email}
+            onChangeText={handleChange("email")}
+            onBlur={handleBlur("email")}
+          />
+          {touched.email && errors.email && (
+            <Text style={styleSheet.errorMessage}>{errors.email}</Text>
+          )}
+          <CustomTextInput
+            placeholder="Password"
+            isPassword={true}
+            isPasswordHidden={isPasswordHidden}
+            setIsPasswordHidden={setIsPasswordHidden}
+            value={values.password}
+            onChangeText={handleChange("password")}
+            onBlur={handleBlur("password")}
+          />
+          {touched.password && errors.password && (
+            <Text style={styleSheet.errorMessage}>{errors.password}</Text>
+          )}
+          <CustomButton
+            label="Sign Up"
+            onPress={() =>
+              signUpUser(values.email, values.password, setSignUpLoading)
+            }
+            loading={signUpLoading}
+          />
 
-      <Text
-        style={{
-          textAlign: "center",
-          paddingVertical: hp(3),
-          fontFamily: "fgregular",
-          fontSize: wp(4),
-        }}
-      >
-        or
-      </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              paddingVertical: hp(3),
+              fontFamily: "fgregular",
+              fontSize: wp(4),
+            }}
+          >
+            or
+          </Text>
 
-      <SignInWithGoogleButton />
+          <SignInWithGoogleButton />
 
-      <Text
-        style={{
-          fontSize: wp(4),
-          color: "#98D0EB",
-          paddingVertical: hp(2),
-          fontFamily: "fgregular",
-        }}
-        onPress={() => navigation.replace("SignInScreen")}
-      >
-        Already have an account? Sign In.
-      </Text>
+          <Text
+            style={{
+              fontSize: wp(4),
+              color: "#98D0EB",
+              paddingVertical: hp(2),
+              fontFamily: "fgregular",
+            }}
+            onPress={() => navigation.replace("SignInScreen")}
+          >
+            Already have an account? Sign In.
+          </Text>
 
-      <Text
-        style={{
-          fontSize: wp(4),
-          color: "black",
-          paddingVertical: hp(2),
-          fontFamily: "fgregular",
-        }}
-      >
-        By creating an account, you’re agreeing to our awesome Terms of Service
-        and Privacy Policy.
-      </Text>
-    </View>
+          <Text
+            style={{
+              fontSize: wp(4),
+              color: "black",
+              paddingVertical: hp(2),
+              fontFamily: "fgregular",
+            }}
+          >
+            By creating an account, you’re agreeing to our awesome Terms of
+            Service and Privacy Policy.
+          </Text>
+        </View>
+      )}
+    </Formik>
   );
 };
 
 export default SignUpScreen;
+
+const styleSheet = StyleSheet.create({
+  errorMessage: {
+    textAlign: "right",
+    color: "#F7B7A3",
+    fontFamily: "fgsemibold",
+    fontSize: wp(3.8),
+  },
+});

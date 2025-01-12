@@ -2,6 +2,7 @@ export type AuthStackParamList = {
   SplashScreen: undefined;
   SignInScreen: undefined;
   SignUpScreen: undefined;
+  MainBottomTab: undefined;
 };
 
 export type MainBottomTabParamList = {
