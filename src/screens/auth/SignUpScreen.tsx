@@ -34,10 +34,19 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
       initialValues={{ userName: "", email: "", password: "" }}
       validationSchema={SignUpSchema}
       onSubmit={(values) => {
-        console.log(values);
+        if (values.email && values.password && values.userName) {
+          signUpUser(
+            values.email,
+            values.password,
+            values.userName,
+            setSignUpLoading
+          );
+        } else {
+          alert("Please Complete the missing fields");
+        }
       }}
     >
-      {({ values, handleChange, handleBlur, errors, touched }) => (
+      {({ values, handleChange, handleBlur, errors, handleSubmit }) => (
         <View
           style={{
             flex: 1,
@@ -65,7 +74,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
             onChangeText={handleChange("userName")}
             onBlur={handleBlur("userName")}
           />
-          {touched.userName && errors.userName && (
+          {errors.userName && (
             <Text style={styleSheet.errorMessage}>{errors.userName}</Text>
           )}
           <CustomTextInput
@@ -74,7 +83,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
             onChangeText={handleChange("email")}
             onBlur={handleBlur("email")}
           />
-          {touched.email && errors.email && (
+          {errors.email && (
             <Text style={styleSheet.errorMessage}>{errors.email}</Text>
           )}
           <CustomTextInput
@@ -86,14 +95,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
             onChangeText={handleChange("password")}
             onBlur={handleBlur("password")}
           />
-          {touched.password && errors.password && (
+          {errors.password && (
             <Text style={styleSheet.errorMessage}>{errors.password}</Text>
           )}
           <CustomButton
             label="Sign Up"
-            onPress={() =>
-              signUpUser(values.email, values.password, setSignUpLoading)
-            }
+            onPress={() => handleSubmit()}
             loading={signUpLoading}
           />
 

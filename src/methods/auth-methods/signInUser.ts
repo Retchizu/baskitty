@@ -25,7 +25,7 @@ export const signInUser = async (
       throw new Error(error.message);
     }
 
-    if (data.user?.email_confirmed_at) {
+    if (data.user?.user_metadata.email_verified) {
       console.log("Account is verified");
       console.log(data.user.user_metadata.email_verified);
       navigation.navigate("MainBottomTab");

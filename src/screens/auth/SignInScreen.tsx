@@ -10,7 +10,6 @@ import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../../type/types";
 import { signInUser } from "../../methods/auth-methods/signInUser";
-import { supabase } from "../../initSupabase";
 import { handleTextChange } from "../../methods/handleTextChange";
 
 type SignInScreenProp = NativeStackScreenProps<
