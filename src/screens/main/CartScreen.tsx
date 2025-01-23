@@ -22,7 +22,7 @@ const CartScreen = () => {
         }}
       >
         <AntDesign name="shoppingcart" size={24} color="white" />
-        <Text style={{ color: 'white', marginLeft: wp(3), fontSize: wp(5), fontFamily: "fgsemibold", marginRight: wp(28.58) }}>Shopping Cart</Text>
+        <Text style={{ color: 'white', marginLeft: wp(3), fontSize: wp(5), fontFamily: "fgsemibold", marginRight: wp(30.3) }}>Shopping Cart</Text>
         <Text style={{ color: 'white', fontSize: wp(4), fontFamily: "fgregular", marginRight: wp(7) }}>Edit</Text>
         <AntDesign name="message1" size={24} color="white" />
       </View>
