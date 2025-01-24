@@ -1,18 +1,43 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import React from 'react'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-const NotificationPanel = () => {
+type CustomNotificationPanel = TouchableOpacityProps & {
+  icon: any;
+  title: string;
+  description: string;
+}
+
+const NotificationPanel: React.FC<CustomNotificationPanel> = (props) => {
+  const { icon, title, description } = props;
   return (
     <TouchableOpacity style={{
       backgroundColor: "#FFECEE",
-      paddingVertical: hp(1.2),
+      paddingVertical: hp(2),
       minHeight: hp(4.8),
-      marginVertical: hp(1),
-    }}></TouchableOpacity>
+      flexDirection: "row",
+      borderWidth: wp(0.1),
+      overflow: "hidden",
+      borderColor: "#FFFFFF",
+      alignItems: "center"
+
+    }}>
+      <View style={{ paddingHorizontal: wp(5), justifyContent: "center" }}>
+        {icon}
+      </View>
+      <View style={{ flex: 1, flexDirection: "column" }}>
+        <Text style={{ marginBottom: hp(1.3), fontFamily: "fgregular", fontSize: wp(4.5) }}>{title}</Text>
+        <Text style={{ fontFamily: "fgregular", fontSize: wp(3.5), color: "#585858" }}>{description}</Text>
+      </View>
+      <View style={{ justifyContent: "center", alignItems: "center", paddingHorizontal: wp(3) }}>
+        <AntDesign name="right" size={24} color="#585858" />
+      </View>
+
+    </TouchableOpacity>
   )
 }
 
