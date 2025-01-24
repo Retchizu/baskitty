@@ -5,22 +5,19 @@ export const createAccount = async (
   email: string,
   userName: string
 ) => {
-  try {
-    const { error: insertUserInDatabaseError } = await supabase
-      .from("Account")
-      .upsert(
-        {
-          uid: uid,
-          email: email,
-          userName: userName,
-        },
-        { onConflict: "uid" }
-      );
+  const { error: insertUserInDatabaseError } = await supabase
+    .from("Account")
+    .upsert(
+      {
+        uid: uid,
+        email: email.toLowerCase(),
+        userName: userName,
+        isVerified: false,
+      },
+      { onConflict: "uid" }
+    );
 
-    if (insertUserInDatabaseError) {
-      throw new Error(insertUserInDatabaseError.message);
-    }
-  } catch (error) {
-    throw error;
+  if (insertUserInDatabaseError) {
+    throw new Error(insertUserInDatabaseError.message);
   }
 };

@@ -4,6 +4,7 @@ import { isRequestValid } from "./auth-database/isRequestValid";
 import { createRequest } from "./auth-database/createRequest";
 import { createAccount } from "./auth-database/createAccount";
 import { checkUserNameDuplicate } from "./auth-database/checkUserNameDuplicate";
+import { checkEmailDuplicate } from "./auth-database/checkEmailDuplicate";
 
 export const signUpUser = async (
   email: string,
@@ -14,7 +15,7 @@ export const signUpUser = async (
   setLoading(true);
 
   try {
-    let requestValid: boolean | undefined;
+    let requestValid: boolean = false;
     const { data: userInDatabase, error: userInDatabaseError } = await supabase
       .from("Account")
       .select("uid, email")
@@ -24,20 +25,31 @@ export const signUpUser = async (
       throw new Error(userInDatabaseError.message);
     }
 
+    if (await checkEmailDuplicate(email)) {
+      alert("Email is already in used");
+      return;
+    }
+
     if (userInDatabase.length) {
       requestValid = await isRequestValid(userInDatabase[0].uid);
       console.log(userInDatabase[0]);
+    } else {
+      requestValid = true;
     }
 
-    if (requestValid || requestValid === undefined) {
+    if (requestValid) {
       if (await checkUserNameDuplicate(userName, email)) {
         alert("Username is already taken");
         return;
       }
+
       const { data: signUpData, error: signUpError } =
         await supabase.auth.signUp({
           email,
           password,
+          options: {
+            emailRedirectTo: "com.retchizu.baskitty://sign-up",
+          },
         });
 
       console.log(signUpData);
@@ -47,6 +59,7 @@ export const signUpUser = async (
 
       await createAccount(signUpData.user?.id, email, userName);
       await createRequest(signUpData.user?.id);
+
       alert("Confirmation email sent. Please check your inbox.");
     } else {
       alert("A confirmation email was already sent. Please try again later.");

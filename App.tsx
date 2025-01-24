@@ -3,12 +3,13 @@ import AuthStack from "./src/navigation-container/AuthStack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MainStackParamList } from "./src/type/types";
 import MainBottomTab from "./src/navigation-container/MainBottomTab";
+import { linking } from "./src/linkingConfig";
 
 export default function App() {
   const Stack = createNativeStackNavigator<MainStackParamList>();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

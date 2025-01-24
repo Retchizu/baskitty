@@ -1,5 +1,5 @@
-import { Image, Text, View } from "react-native";
-import React, { useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,6 +11,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../../type/types";
 import { signInUser } from "../../methods/auth-methods/signInUser";
 import { handleTextChange } from "../../methods/handleTextChange";
+import { useGetSignUpConfirmationLink } from "../../hooks/useGetSignUpConfirmationLink";
+import { useNavigationState } from "@react-navigation/native";
 
 type SignInScreenProp = NativeStackScreenProps<
   AuthStackParamList,
@@ -24,6 +26,11 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
     email: "",
     password: "",
   });
+  const currentScreen = useNavigationState(
+    (state) => state?.routes[state.index]?.name
+  );
+
+  useGetSignUpConfirmationLink(navigation, currentScreen);
 
   return (
     <View
@@ -77,6 +84,12 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
         }
         loading={signInLoading}
       />
+      <Text
+        style={styles.textStyle}
+        onPress={() => navigation.navigate("ResetPasswordScreen")}
+      >
+        Forgot Password
+      </Text>
 
       <Text
         style={{
@@ -92,12 +105,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       <SignInWithGoogleButton />
 
       <Text
-        style={{
-          fontSize: wp(4),
-          color: "#98D0EB",
-          paddingVertical: hp(2),
-          fontFamily: "fgregular",
-        }}
+        style={styles.textStyle}
         onPress={() => navigation.replace("SignUpScreen")}
       >
         Do not have an account? Sign Up.
@@ -107,3 +115,11 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
 };
 
 export default SignInScreen;
+
+const styles = StyleSheet.create({
+  textStyle: {
+    fontSize: wp(4),
+    color: "#98D0EB",
+    fontFamily: "fgregular",
+  },
+});

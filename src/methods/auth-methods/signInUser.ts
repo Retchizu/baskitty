@@ -16,6 +16,7 @@ export const signInUser = async (
   setLoading(true);
 
   try {
+    //TODO: Check the database if the user is verified instead in auth
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,

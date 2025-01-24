@@ -27,6 +27,7 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
   useEffect(() => {
     if (loaded) navigation.replace("SignInScreen");
   }, [loaded]);
+
   return (
     <View
       style={{ backgroundColor: "F8F9FA", flex: 1, justifyContent: "center" }}

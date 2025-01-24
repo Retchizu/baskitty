@@ -14,6 +14,7 @@ const SignInWithGoogleButton = () => {
         paddingVertical: hp(1.2),
         borderColor: "black",
         borderWidth: wp(0.3),
+        marginVertical: hp(2),
       }}
       activeOpacity={0.8}
     >

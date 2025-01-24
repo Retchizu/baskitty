@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -10,9 +10,10 @@ import CustomTextInput from "../../component/CustomTextInput";
 import CustomButton from "../../component/CustomButton";
 import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
 import { signUpUser } from "../../methods/auth-methods/signUpUser";
-import { handleTextChange } from "../../methods/handleTextChange";
 import { Formik } from "formik";
 import { SignUpSchema } from "../../methods/form-validation-methods/signUpFields";
+import { useGetSignUpConfirmationLink } from "../../hooks/useGetSignUpConfirmationLink";
+import { useNavigationState } from "@react-navigation/native";
 
 type SignUpScreenProp = NativeStackScreenProps<
   AuthStackParamList,
@@ -22,13 +23,11 @@ type SignUpScreenProp = NativeStackScreenProps<
 const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [signUpLoading, setSignUpLoading] = useState(false);
+  const currentScreen = useNavigationState(
+    (state) => state?.routes[state.index]?.name
+  );
 
-  /*  const [userCredential, setUserCredential] = useState({
-    userName: "",
-    email: "",
-    password: "",
-  });
- */
+  useGetSignUpConfirmationLink(navigation, currentScreen);
   return (
     <Formik
       initialValues={{ userName: "", email: "", password: "" }}
@@ -103,7 +102,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
             onPress={() => handleSubmit()}
             loading={signUpLoading}
           />
-
           <Text
             style={{
               textAlign: "center",
@@ -114,9 +112,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           >
             or
           </Text>
-
           <SignInWithGoogleButton />
-
           <Text
             style={{
               fontSize: wp(4),
@@ -128,7 +124,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           >
             Already have an account? Sign In.
           </Text>
-
           <Text
             style={{
               fontSize: wp(4),

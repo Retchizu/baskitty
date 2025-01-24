@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "com.retchizu.baskitty",
     "name": "baskitty",
     "slug": "baskitty",
     "version": "1.0.0",
