@@ -11,7 +11,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../../type/types";
 import { signInUser } from "../../methods/auth-methods/signInUser";
 import { handleTextChange } from "../../methods/handleTextChange";
-import { useGetSignUpConfirmationLink } from "../../hooks/useGetSignUpConfirmationLink";
+import { useHandleLink } from "../../hooks/useHandleLink";
 import { useNavigationState } from "@react-navigation/native";
 
 type SignInScreenProp = NativeStackScreenProps<
@@ -30,7 +30,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
     (state) => state?.routes[state.index]?.name
   );
 
-  useGetSignUpConfirmationLink(navigation, currentScreen);
+  useHandleLink(navigation, currentScreen);
 
   return (
     <View
@@ -86,7 +86,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       />
       <Text
         style={styles.textStyle}
-        onPress={() => navigation.navigate("ResetPasswordScreen")}
+        onPress={() => navigation.navigate("RequestPasswordResetScreen")}
       >
         Forgot Password
       </Text>

@@ -8,6 +8,7 @@ const linking: LinkingOptions<MainStackParamList> = {
       AuthStack: {
         screens: {
           SignUpScreen: "sign-up", // Map the route to your screen,
+          UpdatePasswordScreen: "update-password",
         },
       },
     },

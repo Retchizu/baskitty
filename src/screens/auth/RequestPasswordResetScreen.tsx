@@ -8,8 +8,10 @@ import CustomTextInput from "../../component/CustomTextInput";
 import CustomButton from "../../component/CustomButton";
 import { resetPassword } from "../../methods/auth-methods/resetPassword";
 
-const ResetPasswordScreen = () => {
+const RequestPasswordResetScreen = () => {
   const [email, setEmail] = useState("");
+  const [requestResetPasswordLoading, setRequestResetPasswordLoading] =
+    useState(false);
 
   return (
     <View
@@ -49,13 +51,14 @@ const ResetPasswordScreen = () => {
       <CustomButton
         label="Send Password Reset"
         onPress={() => {
-          resetPassword(email);
+          resetPassword(email, setRequestResetPasswordLoading);
         }}
+        loading={requestResetPasswordLoading}
       />
     </View>
   );
 };
 
-export default ResetPasswordScreen;
+export default RequestPasswordResetScreen;
 
 const styles = StyleSheet.create({});

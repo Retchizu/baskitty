@@ -12,7 +12,7 @@ import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
 import { signUpUser } from "../../methods/auth-methods/signUpUser";
 import { Formik } from "formik";
 import { SignUpSchema } from "../../methods/form-validation-methods/signUpFields";
-import { useGetSignUpConfirmationLink } from "../../hooks/useGetSignUpConfirmationLink";
+import { useHandleLink } from "../../hooks/useHandleLink";
 import { useNavigationState } from "@react-navigation/native";
 
 type SignUpScreenProp = NativeStackScreenProps<
@@ -27,7 +27,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
     (state) => state?.routes[state.index]?.name
   );
 
-  useGetSignUpConfirmationLink(navigation, currentScreen);
+  useHandleLink(navigation, currentScreen);
   return (
     <Formik
       initialValues={{ userName: "", email: "", password: "" }}

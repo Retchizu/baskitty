@@ -1,8 +1,11 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 export type AuthStackParamList = {
   SplashScreen: undefined;
   SignInScreen: undefined;
   SignUpScreen: undefined;
-  ResetPasswordScreen: undefined;
+  RequestPasswordResetScreen: undefined;
+  UpdatePasswordScreen: undefined;
   MainBottomTab: undefined;
 };
 
@@ -18,3 +21,11 @@ export type MainStackParamList = {
   AuthStack: undefined;
   MainBottomTab: undefined;
 };
+
+export type AuthStackNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  | "SignInScreen"
+  | "SignUpScreen"
+  | "RequestPasswordResetScreen"
+  | "UpdatePasswordScreen"
+>;
