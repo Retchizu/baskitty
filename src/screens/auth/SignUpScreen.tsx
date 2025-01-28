@@ -97,10 +97,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProp) => {
           {errors.password && (
             <Text style={styleSheet.errorMessage}>{errors.password}</Text>
           )}
+
           <CustomButton
             label="Sign Up"
             onPress={() => handleSubmit()}
             loading={signUpLoading}
+            disabled={signUpLoading}
           />
           <Text
             style={{

@@ -2,7 +2,7 @@ import { supabase } from "../../../initSupabase";
 
 export const isRequestValid = async (uid: string): Promise<boolean> => {
   const { data: requestDataInDatabase, error: requestDataInDatabaseError } =
-    await supabase.from("Request").select("expires_at").eq("uid", uid);
+    await supabase.from("RequestSignUp").select("expires_at").eq("uid", uid);
 
   if (requestDataInDatabaseError)
     throw new Error(requestDataInDatabaseError.message);

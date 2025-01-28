@@ -5,7 +5,6 @@ import { AuthStackNavigationProp, AuthStackParamList } from "../type/types";
 import { supabase } from "../initSupabase";
 import { updateUserVerificationStatus } from "../methods/auth-methods/auth-database/updateUserVerificationStatus";
 
-//TODO: handle link
 export const useHandleLink = (
   navigation: AuthStackNavigationProp,
   currentScreen: string
