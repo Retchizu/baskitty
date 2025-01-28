@@ -11,7 +11,6 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { supabase } from "../../initSupabase";
-import { handleTextChange } from "../../methods/handleTextChange";
 import { Formik } from "formik";
 import { ResetPasswordSchema } from "../../methods/form-validation-methods/resetPasswordFields";
 import { updateUserPassword } from "../../methods/auth-methods/updateUserPassword";
@@ -40,7 +39,7 @@ const UpdatePasswordScreen = ({ navigation }: UpdatePasswordScreenProp) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      setEmail(user?.email ?? "NO EMAIL!");
+      setEmail(user?.email ?? "");
     };
 
     getUser();
@@ -82,7 +81,7 @@ const UpdatePasswordScreen = ({ navigation }: UpdatePasswordScreenProp) => {
               textAlign: "center",
             }}
           >
-            Reset password for {email}
+            {email.trim() ? `Reset password for ${email}` : "Reset password"}
           </Text>
 
           <CustomTextInput
@@ -115,6 +114,7 @@ const UpdatePasswordScreen = ({ navigation }: UpdatePasswordScreenProp) => {
             label="Reset Password"
             onPress={() => handleSubmit()}
             loading={updateUserPasswordLoading}
+            disabled={updateUserPasswordLoading}
           />
         </View>
       )}

@@ -83,6 +83,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
           )
         }
         loading={signInLoading}
+        disabled={signInLoading}
       />
       <Text
         style={styles.textStyle}

@@ -4,7 +4,7 @@ export const createRequest = async (uid: string | undefined) => {
   const currentTime = new Date();
   const expiresAt = new Date(currentTime.getTime() + 2 * 60 * 1000);
   const { error: insertRequestInDatabaseError } = await supabase
-    .from("Request")
+    .from("RequestSignUp")
     .upsert(
       {
         uid: uid,

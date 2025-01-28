@@ -54,6 +54,7 @@ const RequestPasswordResetScreen = () => {
           resetPassword(email, setRequestResetPasswordLoading);
         }}
         loading={requestResetPasswordLoading}
+        disabled={requestResetPasswordLoading}
       />
     </View>
   );
