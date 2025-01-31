@@ -13,6 +13,7 @@ import { signInUser } from "../../methods/auth-methods/signInUser";
 import { handleTextChange } from "../../methods/handleTextChange";
 import { useHandleLink } from "../../hooks/useHandleLink";
 import { useNavigationState } from "@react-navigation/native";
+import GoogleSigninButtonComponent from "../../component/Auth.native";
 
 type SignInScreenProp = NativeStackScreenProps<
   AuthStackParamList,
@@ -102,8 +103,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
       >
         or
       </Text>
-
-      <SignInWithGoogleButton />
+      <GoogleSigninButtonComponent navigation={navigation} />
 
       <Text
         style={styles.textStyle}

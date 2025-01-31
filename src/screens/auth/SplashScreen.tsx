@@ -1,5 +1,4 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import { View, Image } from "react-native";
 import {
@@ -7,25 +6,22 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { AuthStackParamList } from "../../type/types";
+import { useLoadFont } from "../../hooks/useLoadFont";
+import { supabase } from "../../initSupabase";
 
 type SplashScreenProps = NativeStackScreenProps<
   AuthStackParamList,
   "SplashScreen"
 >;
 const SplashScreen = ({ navigation }: SplashScreenProps) => {
-  const [loaded] = useFonts({
-    fgbold: require("../../../assets/fonts/FamiljenGrotesk-Bold.ttf"),
-    fgbolditalic: require("../../../assets/fonts/FamiljenGrotesk-BoldItalic.ttf"),
-    fgitalic: require("../../../assets/fonts/FamiljenGrotesk-Italic.ttf"),
-    fgmedium: require("../../../assets/fonts/FamiljenGrotesk-Medium.ttf"),
-    fgmediumitalic: require("../../../assets/fonts/FamiljenGrotesk-MediumItalic.ttf"),
-    fgregular: require("../../../assets/fonts/FamiljenGrotesk-Regular.ttf"),
-    fgsemibold: require("../../../assets/fonts/FamiljenGrotesk-SemiBold.ttf"),
-    fgsemibolditalic: require("../../../assets/fonts/FamiljenGrotesk-SemiBoldItalic.ttf"),
-  });
+  const loaded = useLoadFont();
+
+  //TODO: auto sign in
 
   useEffect(() => {
-    if (loaded) navigation.replace("SignInScreen");
+    if (loaded) {
+      navigation.navigate("SignInScreen");
+    }
   }, [loaded]);
 
   return (
