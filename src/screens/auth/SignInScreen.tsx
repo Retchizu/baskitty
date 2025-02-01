@@ -6,7 +6,6 @@ import {
 } from "react-native-responsive-screen";
 import CustomTextInput from "../../component/CustomTextInput";
 import CustomButton from "../../component/CustomButton";
-import SignInWithGoogleButton from "../../component/SignInWithGoogleButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../../type/types";
 import { signInUser } from "../../methods/auth-methods/signInUser";
@@ -14,6 +13,8 @@ import { handleTextChange } from "../../methods/handleTextChange";
 import { useHandleLink } from "../../hooks/useHandleLink";
 import { useNavigationState } from "@react-navigation/native";
 import GoogleSigninButtonComponent from "../../component/Auth.native";
+import { supabase } from "../../initSupabase";
+import { checkSession } from "../../hooks/useCheckSession";
 
 type SignInScreenProp = NativeStackScreenProps<
   AuthStackParamList,
@@ -32,6 +33,7 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
   );
 
   useHandleLink(navigation, currentScreen);
+  checkSession(navigation);
 
   return (
     <View
@@ -79,7 +81,6 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
           signInUser(
             userCredential.email,
             userCredential.password,
-            navigation,
             setSignInLoading
           )
         }
