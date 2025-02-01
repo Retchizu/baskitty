@@ -5,6 +5,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import CustomDropdown from './CustomDropdown';
 
 type CustomCartItem = ViewProps & {
   shopName: string;
@@ -51,7 +52,10 @@ const CartItem: React.FC<CustomCartItem> = (props) => {
           color={isChecked ? "#98D0EB" : undefined}
         />
         <Image source={image} style={styles.image}></Image>
+        <View>
         <Text style={{ marginLeft: wp(3), color: "#585858", fontFamily: "fgmedium", }}>{itemName}</Text>
+        <CustomDropdown />
+        </View>
       </View>
     </View>
   );

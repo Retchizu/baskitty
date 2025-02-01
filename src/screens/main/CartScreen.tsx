@@ -8,6 +8,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import CartItem from '../../component/CartItem';
 import CartData from '../../type/cart';
 
+
 type CartData = {
   id: number;
   shopName: string;
