@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { supabase } from "../../initSupabase";
-import { isRequestValid } from "./auth-database/isRequestValid";
-import { createRequest } from "./auth-database/createRequest";
+import { isRequestSignUpValid } from "./auth-database/isRequestSignUpValid";
+import { createRequestSignUp } from "./auth-database/createRequestSignUp";
 import { createAccount } from "./auth-database/createAccount";
 import { checkUserNameDuplicate } from "./auth-database/checkUserNameDuplicate";
 import { checkEmailDuplicate } from "./auth-database/checkEmailDuplicate";
@@ -19,7 +19,8 @@ export const signUpUser = async (
     const { data: userInDatabase, error: userInDatabaseError } = await supabase
       .from("Account")
       .select("uid, email")
-      .eq("email", email);
+      .eq("email", email)
+      .maybeSingle();
 
     if (userInDatabaseError) {
       throw new Error(userInDatabaseError.message);
@@ -30,9 +31,9 @@ export const signUpUser = async (
       return;
     }
 
-    if (userInDatabase.length) {
-      requestValid = await isRequestValid(userInDatabase[0].uid);
-      console.log(userInDatabase[0]);
+    if (userInDatabase) {
+      requestValid = await isRequestSignUpValid(userInDatabase.uid);
+      console.log(userInDatabase);
     } else {
       requestValid = true;
     }
@@ -58,7 +59,7 @@ export const signUpUser = async (
       }
 
       await createAccount(signUpData.user?.id, email, userName);
-      await createRequest(signUpData.user?.id);
+      await createRequestSignUp(signUpData.user?.id);
 
       alert("Confirmation email sent. Please check your inbox.");
     } else {

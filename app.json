@@ -31,6 +31,6 @@
         "projectId": "1874a389-ea50-45ad-b073-a10221377f0e"
       }
     },
-    "plugins": ["expo-font"]
+    "plugins": ["expo-font", ["@react-native-google-signin/google-signin"]]
   }
 }
