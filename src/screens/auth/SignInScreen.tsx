@@ -13,8 +13,6 @@ import { handleTextChange } from "../../methods/handleTextChange";
 import { useHandleLink } from "../../hooks/useHandleLink";
 import { useNavigationState } from "@react-navigation/native";
 import GoogleSigninButtonComponent from "../../component/Auth.native";
-import { supabase } from "../../initSupabase";
-import { checkSession } from "../../hooks/useCheckSession";
 
 type SignInScreenProp = NativeStackScreenProps<
   AuthStackParamList,
@@ -33,7 +31,6 @@ const SignInScreen = ({ navigation }: SignInScreenProp) => {
   );
 
   useHandleLink(navigation, currentScreen);
-  checkSession(navigation);
 
   return (
     <View

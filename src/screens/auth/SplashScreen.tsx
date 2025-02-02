@@ -8,6 +8,7 @@ import {
 import { AuthStackParamList } from "../../type/types";
 import { useLoadFont } from "../../hooks/useLoadFont";
 import { supabase } from "../../initSupabase";
+import { useBootCheckSession } from "../../hooks/useBootCheckSession";
 
 type SplashScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -18,12 +19,7 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
 
   //TODO: auto sign in
 
-  useEffect(() => {
-    if (loaded) {
-      navigation.navigate("SignInScreen");
-    }
-  }, [loaded]);
-
+  useBootCheckSession(navigation, loaded);
   return (
     <View
       style={{ backgroundColor: "F8F9FA", flex: 1, justifyContent: "center" }}

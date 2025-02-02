@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { supabase } from "../initSupabase";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../type/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export const checkSession = (
+export const useBootCheckSession = (
   navigation: NativeStackNavigationProp<
     AuthStackParamList,
-    "SignInScreen",
+    "SplashScreen",
     undefined
-  >
+  >,
+  fontLoaded: boolean
 ) =>
   useEffect(() => {
     const checkIfSession = async () => {
@@ -18,8 +19,11 @@ export const checkSession = (
       if (session) {
         console.log(session);
         navigation.navigate("MainBottomTab");
+      } else {
+        navigation.navigate("SignInScreen");
       }
     };
-
-    checkIfSession();
-  }, []);
+    if (fontLoaded) {
+      checkIfSession();
+    }
+  }, [fontLoaded]);
