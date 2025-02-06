@@ -17,7 +17,6 @@ export const useBootCheckSession = (
         data: { session },
       } = await supabase.auth.getSession();
       if (session) {
-        console.log(session);
         navigation.navigate("MainBottomTab");
       } else {
         navigation.navigate("SignInScreen");

@@ -31,12 +31,10 @@ const GoogleSigninButtonComponent = ({
     androidClientId: BASKITTY_ANDROID_ID,
   });
 
-
   useEffect(() => {
     const googleSignIn = async () => {
       try {
         if (response?.type == "success") {
-          console.log(response.params);
           const { id_token } = response.params;
           const { data, error } = await supabase.auth.signInWithIdToken({
             provider: "google",
@@ -45,7 +43,6 @@ const GoogleSigninButtonComponent = ({
 
           if (error) throw new Error(error.message);
           if (data) {
-            console.log(data);
             navigation.replace("MainBottomTab");
           }
         }
