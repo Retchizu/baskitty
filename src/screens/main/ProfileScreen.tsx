@@ -8,6 +8,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import { useSignOutListener } from "../../hooks/useSignOutListener";
 import { signOutUser } from "../../methods/auth-methods/signOutUser";
+import PurchasesButtons from "../../component/PurchasesButtons";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -58,6 +59,16 @@ const ProfileScreen = () => {
           style={{ position: "absolute", top: hp(2), right: wp(5) }}
         />
       </View>
+
+      <Text style={{ marginLeft: wp(3), marginTop: hp(1), fontFamily: "fgregular", fontSize: wp(3.5) }}>My Purchases</Text>
+
+      <View style={{ flexDirection: "row", justifyContent: "space-between", margin: wp(4.5), marginBottom: hp(5) }}>
+        <PurchasesButtons icon={<AntDesign name="wallet" size={28} color="white" />} label="To Pay" />
+        <PurchasesButtons icon={<AntDesign name="inbox" size={28} color="white" />} label="To Ship" />
+        <PurchasesButtons icon={<AntDesign name="car" size={28} color="white" />} label="To Receive" />
+        <PurchasesButtons icon={<AntDesign name="staro" size={28} color="white" />} label="To Rate" />
+      </View>
+
       <TouchableOpacity
         style={{
           borderColor: "#FF607C",
