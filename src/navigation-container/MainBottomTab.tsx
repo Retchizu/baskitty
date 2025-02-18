@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator<MainBottomTabParamList>();
 const MainBottomTab = () => (
   <Tab.Navigator screenOptions={{
     headerShown: false,
-  }} initialRouteName="ProfileScreen">
+  }} initialRouteName="CartScreen">
     <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarIcon: () => (<AntDesign name="home" size={24} color="gray" />), tabBarLabel: "Shop" }} />
     <Tab.Screen name="CategoryScreen" component={CategoryScreen} options={{ tabBarIcon: () => (<AntDesign name="appstore-o" size={24} color="gray" />), tabBarLabel: "Category" }} />
     <Tab.Screen name="NotificationScreen" component={NotificationScreen} options={{ tabBarIcon: () => (<AntDesign name="bells" size={24} color="gray" />), tabBarLabel: "Notification" }} />

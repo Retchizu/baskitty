@@ -25,7 +25,7 @@ const NotificationScreen = () => {
         }}
       >
         <AntDesign name="bells" size={24} color="white" />
-        <Text style={{ color: 'white', marginLeft: wp(3), fontSize: wp(5), fontFamily: "fgsemibold", marginRight: wp(47) }}>Notifications</Text>
+        <Text style={{ color: 'white', marginLeft: wp(3), fontSize: wp(5), fontFamily: "fgsemibold", marginRight: wp(50) }}>Notifications</Text>
         <AntDesign name="message1" size={24} color="white" />
       </View>
       <View style={{ marginVertical: hp(0.8) }}>
